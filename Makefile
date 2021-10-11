@@ -7,5 +7,5 @@ run:
 	./platformer
 push:
 	git add ./header/*.h ./header/SDL/*.h ./source/*.cpp ./scripts/header/*.h ./scripts/source/*.cpp ./fonts/* ./README.md Makefile
-	git commit -a -m "Made some cool looking particles"
+	git commit -a -m "Edited README.md"
 	git push origin main

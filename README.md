@@ -1,3 +1,3 @@
-# PLATFORMER
+# AIR SIM
 
-A simple platformer game based on [my game engine](https://github.com/colinm22283/engine)
+An air flow simulation based on [my game engine](https://github.com/colinm22283/engine)
