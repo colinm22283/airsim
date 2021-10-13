@@ -7,7 +7,9 @@
 
 #include "sim.h"
 #include "simFlags.h"
+#include "obj.h"
 
+std::vector<object> Sim::objects;
 std::vector<Sim::particle> Sim::parts;
 
 void Sim::start()
@@ -18,7 +20,7 @@ void Sim::start()
         {
             Sim::parts.push_back({
                 (double)i, (double)j,
-                (double)j - 200, (double)i - 200,
+                1, 0,
                 Sim::particleColor::RED
             });
         }
@@ -27,10 +29,17 @@ void Sim::start()
 
 void Sim::update()
 {
+
+
     for (int i = 0; i < (int)Sim::parts.size(); i++)
     {
-        Sim::parts[i].vx -= (Sim::parts[i].x - 250) / 10;
-        Sim::parts[i].vy -= (Sim::parts[i].y - 250) / 10;
+        // Sim::parts[i].vx -= (Sim::parts[i].x - 250) / 10;
+        // Sim::parts[i].vy -= (Sim::parts[i].y - 250) / 10;
+
+        for (int j = 0; j < (int)Sim::objects.size(); j++)
+        {
+            
+        }
 
         Sim::parts[i].x += Sim::parts[i].vx;
         Sim::parts[i].y += Sim::parts[i].vy;
@@ -79,7 +88,7 @@ void Sim::render()
 
         if (SimFlags::drawVectors)
         {
-            double vel = sqrt(pow(p.vx, 2) + pow(p.vy, 2));
+            //double vel = sqrt(pow(p.vx, 2) + pow(p.vy, 2));
 
             Render::drawLine(p.x, p.y, p.x + p.vx, p.y + p.vy);
         }

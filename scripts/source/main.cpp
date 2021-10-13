@@ -11,6 +11,7 @@
 #include "input.h"
 #include "consoleParser.h"
 #include "font.h"
+#include "obj.h"
 
 #include "sim.h"
 #include "simFlags.h"
@@ -24,9 +25,18 @@ void Script::exit()
 
 void Script::keyDown(SDL_Keysym keysym) { }
 
+object o;
+
 void Script::start()
 {
     Sim::start();
+
+    o = object({ 255, 0, 0, 255 });
+
+    o.points.push_back({ 300, 100 });
+    o.points.push_back({ 290, 250 });
+
+    Sim::objects.push_back(&o);
 
     Global::fpsLimit = 10;
     Global::fpsOutput = true;
@@ -37,6 +47,8 @@ void Script::update()
 
     Sim::update();
     Sim::render();
+
+    o.draw();
 }
 
 void Script::mouseDown(int button)

@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "../scripts/header/obj.h"
+
 namespace Sim
 {
     enum particleColor { WHITE, RED, YELLOW, GREEN, CYAN, BLUE, VIOLET };
@@ -14,6 +16,7 @@ namespace Sim
         particleColor c;
     };
 
+    extern std::vector<object> objects;
     extern std::vector<particle> parts;
 
     void start();
