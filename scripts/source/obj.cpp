@@ -5,6 +5,7 @@
 #include "render.h"
 
 #include "obj.h"
+#include "simFlags.h"
 
 object::object()
 {
@@ -18,6 +19,7 @@ object::object(color _c)
 point object::getForce(double a, double b)
 {
     point forceVector = { 0, 0 };
+    int fvCount = 0;
 
     for (int i = 0; i < (int)points.size() - 1; i++)
     {
@@ -25,26 +27,36 @@ point object::getForce(double a, double b)
         point p2 = points[i + 1];
         double m = ((p2.y - p1.y) / (p2.x - p1.x));
         double c = p1.y - p1.x * m;
-        double distance = -1;
 
         if (p1.x == p2.x) forceVector.x += a - p1.x;
         else
         {
-            double x = (b * m - c * m + a) / pow(m, 2) / 2;
-            distance = sqrt(pow(a - x, 2) + pow(b - (m * x + c), 2));
+            double x = (b * m - c * m + a) / (1 + pow(m, 2));
+            // Render::setColor({ 0, 0, 255, 255 });
+            // Render::drawRect(x, 0, 1, 300);
+            // Render::fillRect(x - 3, m * x + c - 3, 6, 6);
+            // Render::drawLine(x, m * x + c, a, b);
+
+            // Console::print("M: " + std::to_string(m));
+            // Console::print("C: " + std::to_string(c));
+            // Console::print("X: " + std::to_string(x));
+            // Console::print("Y: " + std::to_string(m * x + c));
 
             forceVector.x += a - x;
             forceVector.y += b - (m * x + c);
+            fvCount++;
         }
 
-        //Console::print(std::to_string(distance));
+        // Console::print(std::to_string(distance));
     }
 
-    forceVector.x = pow(1 / forceVector.x, 2);
-    forceVector.y = pow(1 / forceVector.y, 2);
+    forceVector.x /= fvCount;
+    forceVector.y /= fvCount;
 
-    Console::print(forceVector.x);
-    Console::print(forceVector.y);
+    // forceVector.x = pow(forceVector.x, 2);
+    // forceVector.y = pow(forceVector.y, 2);
+    forceVector.x = pow(SimFlags::forceMult / forceVector.x, SimFlags::forceExp);
+    forceVector.y = pow(SimFlags::forceMult / forceVector.y, SimFlags::forceExp);
 
     return forceVector;
 }

@@ -14,17 +14,23 @@ std::vector<Sim::particle> Sim::parts;
 
 void Sim::start()
 {
-    for (int i = 200; i < 400; i += 20)
-    {
-        for (int j = 200; j < 400; j += 20)
-        {
-            Sim::parts.push_back({
-                (double)i, (double)j,
-                1, 0,
-                Sim::particleColor::RED
-            });
-        }
-    }
+    // for (int i = 200; i < 400; i += 20)
+    // {
+    //     for (int j = 200; j < 400; j += 20)
+    //     {
+    //         Sim::parts.push_back({
+    //             (double)i, (double)j,
+    //             1, 0,
+    //             Sim::particleColor::RED
+    //         });
+    //     }
+    // }
+
+    Sim::parts.push_back({
+        150, 150,
+        10, 0,
+        Sim::particleColor::RED
+    });
 }
 
 void Sim::update()
@@ -40,8 +46,8 @@ void Sim::update()
         {
             point vector = Sim::objects[j].getForce(Sim::parts[i].x, Sim::parts[i].y);
 
-            Sim::parts[i].vx += vector.x * 0.001;
-            Sim::parts[i].vy += vector.y * 0.001;
+            Sim::parts[i].vx += vector.x;
+            Sim::parts[i].vy += vector.y;
         }
 
         Sim::parts[i].x += Sim::parts[i].vx;

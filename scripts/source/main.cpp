@@ -33,12 +33,12 @@ void Script::start()
 
     o = object({ 255, 0, 0, 255 });
 
+    o.points.push_back({ 290, 250 });
     o.points.push_back({ 300, 100 });
-    o.points.push_back({ 300, 250 });
 
     Sim::objects.push_back(o);
 
-    Global::fpsLimit = 5;
+    Global::fpsLimit = 10;
     Global::fpsOutput = true;
 }
 void Script::update()
