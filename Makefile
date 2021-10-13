@@ -7,5 +7,5 @@ run:
 	./platformer
 push:
 	git add ./header/*.h ./header/SDL/*.h ./source/*.cpp ./scripts/header/*.h ./scripts/source/*.cpp ./fonts/* ./README.md Makefile
-	git commit -a -m "Added a Object class"
+	git commit -a -m "Added more console printing functions"
 	git push origin main

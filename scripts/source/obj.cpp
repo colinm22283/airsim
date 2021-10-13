@@ -27,18 +27,24 @@ point object::getForce(double a, double b)
         double c = p1.y - p1.x * m;
         double distance = -1;
 
-        if (p1.x == p2.x) distance = p1.x - a;
+        if (p1.x == p2.x) forceVector.x += a - p1.x;
         else
         {
             double x = (b * m - c * m + a) / pow(m, 2) / 2;
             distance = sqrt(pow(a - x, 2) + pow(b - (m * x + c), 2));
 
-            forceVector.x += x;
-            forceVector.y += m * x + c;
+            forceVector.x += a - x;
+            forceVector.y += b - (m * x + c);
         }
 
-        Console::print(std::to_string(distance));
+        //Console::print(std::to_string(distance));
     }
+
+    forceVector.x = pow(1 / forceVector.x, 2);
+    forceVector.y = pow(1 / forceVector.y, 2);
+
+    Console::print(forceVector.x);
+    Console::print(forceVector.y);
 
     return forceVector;
 }

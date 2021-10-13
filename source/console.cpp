@@ -19,8 +19,23 @@ int historyPos = -1;
 
 void Console::print(std::string message)
 {
-    std::cout << "\n" << message;
+    std::cout << message << "\n";
     Console::output += "\n" + message;
+}
+void Console::print(bool message)
+{
+    std::cout << (message ? "true" : "false") << "\n";
+    Console::output += "\n" + std::to_string(message);
+}
+void Console::print(int message)
+{
+    std::cout << message << "\n";
+    Console::output += "\n" + std::to_string(message);
+}
+void Console::print(double message)
+{
+    std::cout << message << "\n";
+    Console::output += "\n" + std::to_string(message);
 }
 void Console::update()
 {

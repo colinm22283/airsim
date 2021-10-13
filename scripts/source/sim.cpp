@@ -38,7 +38,10 @@ void Sim::update()
 
         for (int j = 0; j < (int)Sim::objects.size(); j++)
         {
-            
+            point vector = Sim::objects[j].getForce(Sim::parts[i].x, Sim::parts[i].y);
+
+            Sim::parts[i].vx += vector.x * 0.001;
+            Sim::parts[i].vy += vector.y * 0.001;
         }
 
         Sim::parts[i].x += Sim::parts[i].vx;
