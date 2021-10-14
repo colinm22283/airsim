@@ -8,4 +8,5 @@ run:
 push:
 	./tools/push.sh
 release:
+	./tools/push.sh
 	./tools/release.sh
