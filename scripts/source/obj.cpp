@@ -58,6 +58,9 @@ point object::getForce(double a, double b)
     forceVector.x *= SimFlags::forceMult;
     forceVector.y *= SimFlags::forceMult;
 
+    // forceVector.x = forceVector.x * pow(mag, SimFlags::forceExp);
+    // forceVector.y = forceVector.y * pow(mag, SimFlags::forceExp);
+
     // Console::print("X: " + std::to_string(forceVector.x));
     // Console::print("Y: " + std::to_string(forceVector.y));
 

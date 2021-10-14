@@ -13,7 +13,8 @@ namespace Sim
         double y = 0;
         double vx = 0;
         double vy = 0;
-        particleColor c;
+        particleColor c = particleColor::RED;
+        long life = 0;
     };
 
     extern std::vector<object> objects;

@@ -4,28 +4,20 @@
 #include "color.h"
 #include "render.h"
 #include "console.h"
+#include "engine.h"
 
 #include "sim.h"
 #include "simFlags.h"
 #include "obj.h"
+
+
+long spawnTimer = 0;
 
 std::vector<object> Sim::objects;
 std::vector<Sim::particle> Sim::parts;
 
 void Sim::start()
 {
-    for (int i = 0; i < 100; i += 20)
-    {
-        for (int j = 0; j < 400; j += 5)
-        {
-            Sim::parts.push_back({
-                (double)i, (double)j,
-                4, 0,
-                Sim::particleColor::RED
-            });
-        }
-    }
-
     // Sim::parts.push_back({
     //     150, 150,
     //     10, 0,
@@ -35,13 +27,26 @@ void Sim::start()
 
 void Sim::update()
 {
+    if (spawnTimer >= SimFlags::spawnInterval)
+    {
+        for (int i = 0; i < 100; i += 3)
+        {
+            for (int j = 0; j < 400; j += 3)
+            {
+                Sim::parts.push_back({
+                    (double)i, (double)j,
+                    4, 0,
+                    Sim::particleColor::RED
+                });
+            }
+        }
+        spawnTimer = 0;
+    }
 
+    spawnTimer += 1;
 
     for (int i = 0; i < (int)Sim::parts.size(); i++)
     {
-        // Sim::parts[i].vx -= (Sim::parts[i].x - 250) / 10;
-        // Sim::parts[i].vy -= (Sim::parts[i].y - 250) / 10;
-
         for (int j = 0; j < (int)Sim::objects.size(); j++)
         {
             point vector = Sim::objects[j].getForce(Sim::parts[i].x, Sim::parts[i].y);
@@ -52,6 +57,12 @@ void Sim::update()
 
         Sim::parts[i].x += Sim::parts[i].vx;
         Sim::parts[i].y += Sim::parts[i].vy;
+        Sim::parts[i].life += Engine::deltaTime;
+
+        if (Sim::parts[i].life >= SimFlags::particleLifespan)
+        {
+            Sim::parts.erase(Sim::parts.begin() + i);
+        }
     }
 }
 

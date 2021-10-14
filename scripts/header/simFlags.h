@@ -6,6 +6,9 @@ namespace SimFlags
     extern bool drawVelocityVectors;
     extern bool drawForceVectors;
 
+    extern long spawnInterval;
+    extern long particleLifespan;
+
     extern double forceMult;
     extern double forceExp;
 
@@ -16,7 +19,10 @@ inline bool SimFlags::debugMode = false;
 inline bool SimFlags::drawVelocityVectors = true;
 inline bool SimFlags::drawForceVectors = true;
 
+inline long SimFlags::spawnInterval = 30;
+inline long SimFlags::particleLifespan = 1000;
+
 inline double SimFlags::forceMult = 0.05;
-inline double SimFlags::forceExp = 3;
+inline double SimFlags::forceExp = 1.01;
 
 inline SF_RENDER_MODE SimFlags::renderMode = PARTICLE;
