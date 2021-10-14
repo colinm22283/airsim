@@ -6,4 +6,6 @@ compile:
 run:
 	./platformer
 push:
-	./push.sh
+	./tools/push.sh
+release:
+	./tools/release.sh
