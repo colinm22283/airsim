@@ -19,10 +19,10 @@ inline bool SimFlags::debugMode = false;
 inline bool SimFlags::drawVelocityVectors = true;
 inline bool SimFlags::drawForceVectors = true;
 
-inline long SimFlags::spawnInterval = 30;
-inline long SimFlags::particleLifespan = 1000;
+inline long SimFlags::spawnInterval = 50;
+inline long SimFlags::particleLifespan = 5000;
 
-inline double SimFlags::forceMult = 0.05;
+inline double SimFlags::forceMult = 0.2;
 inline double SimFlags::forceExp = 1.01;
 
 inline SF_RENDER_MODE SimFlags::renderMode = PARTICLE;

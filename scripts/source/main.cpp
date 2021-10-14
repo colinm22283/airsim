@@ -33,11 +33,13 @@ void Script::start()
 
     o = object({ 255, 0, 0, 255 });
 
+    o.points.push_back({ 500, 125 });
     o.points.push_back({ 300, 150 });
     o.points.push_back({ 230, 175 });
     o.points.push_back({ 200, 200 });
-    o.points.push_back({ 230, 225 });
-    o.points.push_back({ 300, 250 });
+    o.points.push_back({ 210, 225 });
+    o.points.push_back({ 230, 250 });
+    o.points.push_back({ 500, 250 });
 
     Sim::objects.push_back(o);
 
@@ -46,7 +48,7 @@ void Script::start()
 }
 void Script::update()
 {
-    Render::clearScreen({ 255, 255, 255, 255 });
+    Render::clearScreen({ 0, 0, 0, 255 });
 
     Sim::update();
     Sim::render();

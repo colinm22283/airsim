@@ -29,13 +29,13 @@ void Sim::update()
 {
     if (spawnTimer >= SimFlags::spawnInterval)
     {
-        for (int i = 0; i < 100; i += 3)
+        for (int i = 0; i < 50; i += 3)
         {
-            for (int j = 0; j < 400; j += 3)
+            for (int j = 100; j < 300; j += 3)
             {
                 Sim::parts.push_back({
                     (double)i, (double)j,
-                    4, 0,
+                    7, 0,
                     Sim::particleColor::RED
                 });
             }
