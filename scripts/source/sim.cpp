@@ -14,23 +14,23 @@ std::vector<Sim::particle> Sim::parts;
 
 void Sim::start()
 {
-    // for (int i = 200; i < 400; i += 20)
-    // {
-    //     for (int j = 200; j < 400; j += 20)
-    //     {
-    //         Sim::parts.push_back({
-    //             (double)i, (double)j,
-    //             1, 0,
-    //             Sim::particleColor::RED
-    //         });
-    //     }
-    // }
+    for (int i = 0; i < 100; i += 20)
+    {
+        for (int j = 0; j < 400; j += 5)
+        {
+            Sim::parts.push_back({
+                (double)i, (double)j,
+                4, 0,
+                Sim::particleColor::RED
+            });
+        }
+    }
 
-    Sim::parts.push_back({
-        150, 150,
-        10, 0,
-        Sim::particleColor::RED
-    });
+    // Sim::parts.push_back({
+    //     150, 150,
+    //     10, 0,
+    //     Sim::particleColor::RED
+    // });
 }
 
 void Sim::update()
@@ -46,8 +46,8 @@ void Sim::update()
         {
             point vector = Sim::objects[j].getForce(Sim::parts[i].x, Sim::parts[i].y);
 
-            Sim::parts[i].vx += vector.x;
-            Sim::parts[i].vy += vector.y;
+            Sim::parts[i].vx -= vector.x;
+            Sim::parts[i].vy -= vector.y;
         }
 
         Sim::parts[i].x += Sim::parts[i].vx;
@@ -95,7 +95,7 @@ void Sim::render()
         { } break;
         }
 
-        if (SimFlags::drawVectors)
+        if (SimFlags::drawVelocityVectors)
         {
             //double vel = sqrt(pow(p.vx, 2) + pow(p.vy, 2));
 

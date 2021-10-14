@@ -33,12 +33,13 @@ void Script::start()
 
     o = object({ 255, 0, 0, 255 });
 
-    o.points.push_back({ 290, 250 });
-    o.points.push_back({ 300, 100 });
+    o.points.push_back({ 300, 150 });
+    o.points.push_back({ 200, 200 });
+    o.points.push_back({ 300, 250 });
 
     Sim::objects.push_back(o);
 
-    Global::fpsLimit = 10;
+    Global::fpsLimit = 60;
     Global::fpsOutput = true;
 }
 void Script::update()
@@ -63,7 +64,8 @@ void Script::mouseClick(int button)
 bool Script::consoleSet(std::string variable, std::string value)
 {
     if (variable == "debugmode") SimFlags::debugMode = value == "true" ? true : false;
-    else if (variable == "drawvectors") SimFlags::drawVectors = value == "true" ? true : false;
+    else if (variable == "velocityvectors") SimFlags::drawVelocityVectors = value == "true" ? true : false;
+    else if (variable == "forcevectors") SimFlags::drawForceVectors = value == "true" ? true : false;
     else return false;
 
     return true;

@@ -7,6 +7,3 @@ run:
 	./platformer
 push:
 	./push.sh
-	# git add ./header/*.h ./header/SDL/*.h ./source/*.cpp ./scripts/header/*.h ./scripts/source/*.cpp ./fonts/* ./README.md ./Makefile ./push.sh
-	# git commit -a -m "Added more console printing functions"
-	# git push origin main
