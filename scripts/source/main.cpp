@@ -43,7 +43,7 @@ void Script::start()
 
     Sim::objects.push_back(o);
 
-    Global::fpsLimit = 60;
+    Global::fpsLimit = 1;
     Global::fpsOutput = true;
 }
 void Script::update()
