@@ -10,11 +10,7 @@
 #include "simFlags.h"
 #include "obj.h"
 
-
 long spawnTimer = 0;
-
-std::vector<object> Sim::objects;
-std::vector<Sim::particle> Sim::parts;
 
 void Sim::start()
 {
@@ -22,9 +18,9 @@ void Sim::start()
     {
         for (int j = 100; j < 300; j += 3)
         {
-            Sim::parts.push_back({
+            SimFlags::parts.push_back((particle){
                 (double)i, (double)j,
-                7, 0,
+                7.0, 0.0,
                 Sim::particleColor::RED
             });
         }
@@ -35,48 +31,54 @@ void Sim::update()
 {
     if (spawnTimer >= SimFlags::spawnInterval)
     {
-        for (int i = 0; i < 50; i += 3)
-        {
-            for (int j = 100; j < 300; j += 3)
-            {
-                Sim::parts.push_back({
-                    (double)i, (double)j,
-                    7, 0,
-                    Sim::particleColor::RED
-                });
-            }
-        }
+        SimFlags::parts.push_back((particle){
+            50, 150,
+            7, 0,
+            Sim::particleColor::RED
+        });
+
+        // for (int i = 0; i < 50; i += 3)
+        // {
+        //     for (int j = 100; j < 300; j += 3)
+        //     {
+        //         SimFlags::parts.push_back({
+        //             (double)i, (double)j,
+        //             7, 0,
+        //             Sim::particleColor::RED
+        //         });
+        //     }
+        // }
         spawnTimer = 0;
     }
 
-    spawnTimer += 1;
+    spawnTimer++;
 
-    for (int i = 0; i < (int)Sim::parts.size(); i++)
+    for (int i = 0; i < (int)SimFlags::parts.size(); i++)
     {
-        for (int j = 0; j < (int)Sim::objects.size(); j++)
+        for (int j = 0; j < (int)SimFlags::objects.size(); j++)
         {
-            point vector = Sim::objects[j].getForce(Sim::parts[i].x, Sim::parts[i].y);
+            point vector = SimFlags::objects[j].getForce(SimFlags::parts[i].x, SimFlags::parts[i].y);
 
-            Sim::parts[i].vx -= vector.x;
-            Sim::parts[i].vy -= vector.y;
+            SimFlags::parts[i].vx -= vector.x;
+            SimFlags::parts[i].vy -= vector.y;
         }
 
-        Sim::parts[i].x += Sim::parts[i].vx;
-        Sim::parts[i].y += Sim::parts[i].vy;
-        Sim::parts[i].life += Engine::deltaTime;
+        SimFlags::parts[i].x += SimFlags::parts[i].vx;
+        SimFlags::parts[i].y += SimFlags::parts[i].vy;
+        SimFlags::parts[i].life++;
 
-        if (Sim::parts[i].life >= SimFlags::particleLifespan)
+        if (SimFlags::parts[i].life >= SimFlags::particleLifespan)
         {
-            Sim::parts.erase(Sim::parts.begin() + i);
+            SimFlags::parts.erase(SimFlags::parts.begin() + i);
         }
     }
 }
 
 void Sim::render()
 {
-    for (int i = 0; i < (int)Sim::parts.size(); i++)
+    for (int i = 0; i < (int)SimFlags::parts.size(); i++)
     {
-        particle p = Sim::parts[i];
+        particle p = SimFlags::parts[i];
 
         switch (SimFlags::renderMode)
         {

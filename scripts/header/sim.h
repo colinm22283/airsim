@@ -17,9 +17,6 @@ namespace Sim
         long life = 0;
     };
 
-    extern std::vector<object> objects;
-    extern std::vector<particle> parts;
-
     void start();
     void update();
     void render();

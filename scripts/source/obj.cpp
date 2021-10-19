@@ -18,6 +18,7 @@ object::object(color _c)
 
 point object::getForce(double a, double b)
 {
+    int fvCount = 0;
     point forceVector = { 0, 0 };
 
     for (int i = 0; i < (int)points.size() - 1; i++)
@@ -43,6 +44,7 @@ point object::getForce(double a, double b)
 
             forceVector.x += x - a;
             forceVector.y += (m * x + c) - b;
+            fvCount++;
 
             // Console::print("X: " + std::to_string(forceVector.x));
             // Console::print("Y: " + std::to_string(forceVector.y));
@@ -51,15 +53,30 @@ point object::getForce(double a, double b)
         // Console::print(std::to_string(distance));
     }
 
+    forceVector.x /= fvCount;
+    forceVector.y /= fvCount;
+
     double mag = sqrt(pow(forceVector.x, 2) + pow(forceVector.y, 2));
     forceVector.x /= mag;
     forceVector.y /= mag;
 
-    forceVector.x = pow(forceVector.x, SimFlags::forceExp);
-    forceVector.y = pow(forceVector.y, SimFlags::forceExp);
+    point magVector = {
+        pow(mag * SimFlags::magMult, SimFlags::forceExp),
+        pow(mag * SimFlags::magMult, SimFlags::forceExp)
+    };
+
+    forceVector.x *= magVector.x;
+    forceVector.y *= magVector.y;
 
     forceVector.x *= SimFlags::forceMult;
     forceVector.y *= SimFlags::forceMult;
+
+    int pvCount = 0;
+    point partVector = { 0, 0 };
+    for (int i = 0; i < (int)SimFlags::parts.size(); i++)
+    {
+        
+    }
 
     // forceVector.x = forceVector.x * pow(mag, SimFlags::forceExp);
     // forceVector.y = forceVector.y * pow(mag, SimFlags::forceExp);
