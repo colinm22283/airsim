@@ -71,13 +71,6 @@ point object::getForce(double a, double b)
     forceVector.x *= SimFlags::forceMult;
     forceVector.y *= SimFlags::forceMult;
 
-    int pvCount = 0;
-    point partVector = { 0, 0 };
-    for (int i = 0; i < (int)SimFlags::parts.size(); i++)
-    {
-        
-    }
-
     // forceVector.x = forceVector.x * pow(mag, SimFlags::forceExp);
     // forceVector.y = forceVector.y * pow(mag, SimFlags::forceExp);
 
