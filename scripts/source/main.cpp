@@ -12,12 +12,9 @@
 #include "consoleParser.h"
 #include "font.h"
 #include "obj.h"
-#include "../header/menu.h"
 
 #include "sim.h"
 #include "simFlags.h"
-
-Menu menu;
 
 void Script::exit()
 {
@@ -40,10 +37,6 @@ void Script::start()
     o.points.push_back({ 200, 200 });
     // o.points.push_back({ 500, 300 });
 
-    std::vector<element> ele;
-    ele.push_back({ elementType::TEXT, "test", 10, 10 });
-    menu = Menu(ele, 20, 20, 100, 100);
-
     SimFlags::objects.push_back(o);
 
     Global::fpsLimit = 5;
@@ -55,8 +48,6 @@ void Script::update()
 
     Sim::update();
     Sim::render();
-
-    menu.update();
 
     o.draw();
 }

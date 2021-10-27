@@ -53,6 +53,9 @@ point object::getForce(double a, double b)
         // Console::print(std::to_string(distance));
     }
 
+    Render::setColor({ 0, 255, 0, 0 });
+    Render::drawLine(a, b, a + forceVector.x, b + forceVector.y);
+
     forceVector.x /= fvCount;
     forceVector.y /= fvCount;
 
