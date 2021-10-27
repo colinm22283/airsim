@@ -45,7 +45,11 @@ bool ConsoleParser::parse(std::string code)
         else if (second == "fpsoutput") Global::fpsOutput = third == "true";
         else if (second == "printkeys") Global::printKeys = third == "true";
         else if (Script::consoleSet(second, third));
-        else Console::print("Variable \"" + second + "\" does not exist.");
+        else
+        {
+            Console::print("Variable \"" + second + "\" does not exist.");
+            return false;
+        }
     }
     else if (first == "bind")
     {
