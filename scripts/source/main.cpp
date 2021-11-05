@@ -29,6 +29,8 @@ object o;
 
 void Script::start()
 {
+    return;
+
     Sim::start();
 
     o = object({ 255, 0, 0, 255 });
@@ -45,6 +47,8 @@ void Script::start()
 void Script::update()
 {
     Render::clearScreen({ 0, 0, 0, 255 });
+
+    return;
 
     Sim::update();
     Sim::render();
