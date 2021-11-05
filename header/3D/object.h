@@ -5,5 +5,7 @@
 class Object
 {
 public:
-    Mesh mesh;
+    Object();
+
+    Mesh* mesh;
 };

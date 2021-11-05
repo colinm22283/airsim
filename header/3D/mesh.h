@@ -6,7 +6,7 @@
 
 struct vertex
 {
-    point2 pos;
+    point3 pos;
     point2 texCoord;
 };
 struct face
@@ -23,4 +23,6 @@ public:
     std::vector<face> faces;
 
     void draw();
+
+    static Mesh createBlock(float width, float height, float length);
 };
