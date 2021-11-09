@@ -23,7 +23,7 @@ public:
     std::vector<vertex> verts;
     std::vector<face> faces;
 
-    void draw();
+    void draw(point3 pos);
 
     static Mesh createBlock(float width, float height, float length);
 };

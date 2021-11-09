@@ -2,17 +2,17 @@
 #include <3D/mesh.h>
 #include <3D/engine3DFlags.h>
 
-//                                                    MESH CLASS
+//                                               MESH CLASS
 Mesh::Mesh()
 {
 
 }
 
-void Mesh::draw()
+void Mesh::draw(point3 pos)
 {
     if (Engine3DFlags::drawWireframe)
     {
-
+        
     }
 }
 
