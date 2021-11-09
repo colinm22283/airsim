@@ -1,9 +1,13 @@
+#include <math.h>
+
 #include <color.h>
 #include <render.h>
+#include <console.h>
 
 #include <3D/mesh.h>
 #include <3D/math.h>
 #include <3D/engine3DFlags.h>
+#include <3D/engine3DGlobal.h>
 
 //                                               MESH CLASS
 Mesh::Mesh()
@@ -15,7 +19,28 @@ void Mesh::draw(point3 pos)
 {
     if (Engine3DFlags::drawWireframe)
     {
-        Render::drawRect(0, 0, 10, 10, { 255, 0, 0 });
+        Console::print(std::to_string(verts.size()));
+        Render::setColor({ 255, 0, 0 });
+        Render::drawRect(0, 0, 10, 10);
+        for (int i = 0; i < (int)verts.size(); i++) // draw points
+        {
+            // check if point is in fov
+            float xAngle = atan2f32(
+                verts[i].pos.z + pos.z - Engine3DGlobal::camera.pos.z,
+                verts[i].pos.x + pos.x - Engine3DGlobal::camera.pos.x
+            );
+            if (
+                xAngle > Engine3DGlobal::camera.dir.y - (Engine3DGlobal::camera.fov / 2) &&
+                xAngle < Engine3DGlobal::camera.dir.y + (Engine3DGlobal::camera.fov / 2)
+            ) {
+                Console::print(std::to_string(xAngle));
+                Render::drawRect(
+                    (xAngle - Engine3DGlobal::camera.dir.y + (Engine3DGlobal::camera.fov / 2)) / Engine3DGlobal::camera.fov * Global::windowWidth,
+                    10, 3, 100
+                );
+            }
+        }
+        Console::print("tesT");
     }
 }
 
@@ -40,4 +65,6 @@ Mesh Mesh::createBlock(float width, float height, float length)
         { &proto.verts[2], &proto.verts[4], &proto.verts[6] },
         (point3){ 0, 0, -1 }
     });
+
+    return proto;
 }

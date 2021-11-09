@@ -37,6 +37,7 @@ void Script::start()
 void Script::update()
 {
     Engine3DGlobal::objects[0].draw();
+    Engine3DGlobal::camera.dir.y += 0.005;
 }
 
 void Script::mouseDown(int button)
