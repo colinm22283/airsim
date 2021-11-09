@@ -1,5 +1,8 @@
-#include <3D/math.h>
+#include <color.h>
+#include <render.h>
+
 #include <3D/mesh.h>
+#include <3D/math.h>
 #include <3D/engine3DFlags.h>
 
 //                                               MESH CLASS
@@ -12,7 +15,7 @@ void Mesh::draw(point3 pos)
 {
     if (Engine3DFlags::drawWireframe)
     {
-        
+        Render::drawRect(0, 0, 10, 10, { 255, 0, 0 });
     }
 }
 

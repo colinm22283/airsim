@@ -30,7 +30,7 @@ Object o;
 void Script::start()
 {
     m = Mesh::createBlock(10, 10, 10);
-    o.pos = { 5, 0, 0 };
+    o.pos = { 0, 0, 5 };
     o.mesh = &m;
     Engine3DGlobal::objects.push_back(o);
 }

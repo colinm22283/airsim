@@ -46,7 +46,7 @@ bool ConsoleParser::parse(std::string code)
         else if (second == "fpslimit") Global::fpsLimit = std::stoi(third);
         else if (second == "fpsoutput") Global::fpsOutput = third == "true";
         else if (second == "printkeys") Global::printKeys = third == "true";
-        else if (second == "wireframe") Engine3DFlags::drawWireframe = third == "true";
+        else if (second == "drawwireframe") Engine3DFlags::drawWireframe = third == "true";
         else if (Script::consoleSet(second, third));
         else
         {
