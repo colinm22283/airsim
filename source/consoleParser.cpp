@@ -1,13 +1,15 @@
 #include <string>
 #include <map>
 #include <iostream>
-#include "SDL/SDL.h"
+#include <SDL/SDL.h>
 
-#include "consoleParser.h"
-#include "script.h"
-#include "console.h"
-#include "engine.h"
-#include "global.h"
+#include <consoleParser.h>
+#include <script.h>
+#include <console.h>
+#include <engine.h>
+#include <global.h>
+
+#include <3D/engine3DFlags.h>
 
 std::string bindMap[255];
 
@@ -44,6 +46,7 @@ bool ConsoleParser::parse(std::string code)
         else if (second == "fpslimit") Global::fpsLimit = std::stoi(third);
         else if (second == "fpsoutput") Global::fpsOutput = third == "true";
         else if (second == "printkeys") Global::printKeys = third == "true";
+        else if (second == "wireframe") Engine3DFlags::drawWireframe = third == "true";
         else if (Script::consoleSet(second, third));
         else
         {

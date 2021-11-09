@@ -1,5 +1,6 @@
 #include <3D/math.h>
 #include <3D/mesh.h>
+#include <3D/engine3DFlags.h>
 
 //                                                    MESH CLASS
 Mesh::Mesh()
@@ -9,7 +10,10 @@ Mesh::Mesh()
 
 void Mesh::draw()
 {
+    if (Engine3DFlags::drawWireframe)
+    {
 
+    }
 }
 
 Mesh Mesh::createBlock(float width, float height, float length)
@@ -25,5 +29,12 @@ Mesh Mesh::createBlock(float width, float height, float length)
     proto.verts.push_back((vertex){ (point3){ width, height, 0 }, (point2){ 1, 1 } }); //       6
     proto.verts.push_back((vertex){ (point3){ width, height, length }, (point2){ 0, 0 } }); //  7
 
-    proto.faces.push_back((face){ { &proto.verts[0], &proto.verts[2], &proto.verts[4] } });
+    proto.faces.push_back((face){
+        { &proto.verts[0], &proto.verts[2], &proto.verts[4] },
+        (point3){ 0, 0, -1 }
+    });
+    proto.faces.push_back((face){
+        { &proto.verts[2], &proto.verts[4], &proto.verts[6] },
+        (point3){ 0, 0, -1 }
+    });
 }
