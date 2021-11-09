@@ -30,14 +30,17 @@ Object o;
 void Script::start()
 {
     m = Mesh::createBlock(10, 10, 10);
-    o.pos = { 0, 0, 5 };
+    o.pos = { 20, 0, 20 };
     o.mesh = &m;
     Engine3DGlobal::objects.push_back(o);
+
+    Engine3DGlobal::camera.pos.y = 3;
 }
 void Script::update()
 {
+    Render::clearScreen({ 0, 0, 0 });
     Engine3DGlobal::objects[0].draw();
-    Engine3DGlobal::camera.dir.y += 0.005;
+    Engine3DGlobal::camera.dir.y += 0.001;
 }
 
 void Script::mouseDown(int button)
