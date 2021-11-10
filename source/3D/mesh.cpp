@@ -76,22 +76,6 @@ Mesh Mesh::createBlock(float width, float height, float length)
     proto.verts.push_back((vertex){ (point3){ width, height, length }, (point2){ 0, 0 } }); //  7
 
     proto.faces.push_back((face){
-        { &proto.verts[0], &proto.verts[2], &proto.verts[4] },
-        (point3){ 0, 0, -1 }
-    });
-    proto.faces.push_back((face){
-        { &proto.verts[2], &proto.verts[4], &proto.verts[6] },
-        (point3){ 0, 0, -1 }
-    });
-    proto.faces.push_back((face){
-        { &proto.verts[3], &proto.verts[5], &proto.verts[6] },
-        (point3){ 0, 0, 1 }
-    });
-    proto.faces.push_back((face){
-        { &proto.verts[3], &proto.verts[5], &proto.verts[7] },
-        (point3){ 0, 0, 1 }
-    });
-    proto.faces.push_back((face){
         { &proto.verts[4], &proto.verts[5], &proto.verts[6] },
         (point3){ 1, 0, 0 }
     });
@@ -122,6 +106,22 @@ Mesh Mesh::createBlock(float width, float height, float length)
     proto.faces.push_back((face){
         { &proto.verts[0], &proto.verts[5], &proto.verts[6] },
         (point3){ 0, -1, 0 }
+    });
+    proto.faces.push_back((face){
+        { &proto.verts[1], &proto.verts[3], &proto.verts[5] },
+        (point3){ 0, 0, 1 }
+    });
+    proto.faces.push_back((face){
+        { &proto.verts[3], &proto.verts[5], &proto.verts[7] },
+        (point3){ 0, 0, 1 }
+    });
+    proto.faces.push_back((face){
+        { &proto.verts[0], &proto.verts[2], &proto.verts[4] },
+        (point3){ 0, 0, -1 }
+    });
+    proto.faces.push_back((face){
+        { &proto.verts[2], &proto.verts[4], &proto.verts[6] },
+        (point3){ 0, 0, -1 }
     });
 
     return proto;
