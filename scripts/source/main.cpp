@@ -40,7 +40,7 @@ void Script::update()
 {
     Render::clearScreen({ 0, 0, 0 });
     Engine3DGlobal::objects[0].draw();
-    Engine3DGlobal::camera.dir.y += 0.001;
+    Engine3DGlobal::camera.dir.y += Input::mouseVelX / 10;
 }
 
 void Script::mouseDown(int button)

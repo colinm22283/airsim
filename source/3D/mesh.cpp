@@ -23,41 +23,49 @@ void Mesh::draw(point3 pos)
 
         for (int i = 0; i < (int)faces.size(); i++) // draw points
         {
-            point2 pts[3] = { { 0, 0 }, { 0, 0 }, { 0, 0 } };
-            for (int j = 0; j < 3; j++)
+            for (int k = 0; k < 3; k++)
             {
-                // check if point is in fov
                 float xAngle = atan2f32(
-                    faces[i].points[j]->pos.z + pos.z - Engine3DGlobal::camera.pos.z,
-                    faces[i].points[j]->pos.x + pos.x - Engine3DGlobal::camera.pos.x
+                    faces[i].points[k]->pos.z + pos.z - Engine3DGlobal::camera.pos.z,
+                    faces[i].points[k]->pos.x + pos.x - Engine3DGlobal::camera.pos.x
                 );
                 if (
                     xAngle > Engine3DGlobal::camera.dir.y - (Engine3DGlobal::camera.fov / 2) &&
                     xAngle < Engine3DGlobal::camera.dir.y + (Engine3DGlobal::camera.fov / 2)
                 ) {
-                    float yAngle = atan2f32(
-                        faces[i].points[j]->pos.y + pos.y - Engine3DGlobal::camera.pos.y,
-                        sqrtf32(
-                            powf32(faces[i].points[j]->pos.x + pos.x - Engine3DGlobal::camera.pos.x, 2) +
-                            powf32(faces[i].points[j]->pos.z + pos.z - Engine3DGlobal::camera.pos.z, 2)
-                        )
-                    );
+                    point2 pts[3] = { { 0, 0 }, { 0, 0 }, { 0, 0 } };
+                    for (int j = 0; j < 3; j++)
+                    {
+                        // check if point is in fov
+                        float xAngle = atan2f32(
+                            faces[i].points[j]->pos.z + pos.z - Engine3DGlobal::camera.pos.z,
+                            faces[i].points[j]->pos.x + pos.x - Engine3DGlobal::camera.pos.x
+                        );
+                        float yAngle = atan2f32(
+                            faces[i].points[j]->pos.y + pos.y - Engine3DGlobal::camera.pos.y,
+                            sqrtf32(
+                                powf32(faces[i].points[j]->pos.x + pos.x - Engine3DGlobal::camera.pos.x, 2) +
+                                powf32(faces[i].points[j]->pos.z + pos.z - Engine3DGlobal::camera.pos.z, 2)
+                            )
+                        );
 
-                    pts[j] = {
-                        (xAngle - Engine3DGlobal::camera.dir.y + (Engine3DGlobal::camera.fov / 2)) / Engine3DGlobal::camera.fov * Global::windowWidth,
-                        (yAngle - Engine3DGlobal::camera.dir.x + (Engine3DGlobal::camera.fov / 2)) / Engine3DGlobal::camera.fov * Global::windowHeight
-                    };
+                        pts[j] = {
+                            (xAngle - Engine3DGlobal::camera.dir.y + (Engine3DGlobal::camera.fov / 2)) / Engine3DGlobal::camera.fov * Global::windowWidth,
+                            (yAngle - Engine3DGlobal::camera.dir.x + (Engine3DGlobal::camera.fov / 2)) / Engine3DGlobal::camera.fov * Global::windowHeight
+                        };
 
-                    Render::drawRect(
-                        pts[j].x - 2,
-                        pts[j].y - 2,
-                        4, 4
-                    );
+                        Render::fillRect(
+                            pts[j].x - 2,
+                            pts[j].y - 2,
+                            4, 4
+                        );
+                    }
+
+                    for (int j = 0; j < 2; j++) Render::drawLine(pts[j].x, pts[j].y, pts[j + 1].x, pts[j + 1].y);
+                    Render::drawLine(pts[2].x, pts[2].y, pts[0].x, pts[0].y);
+                    break;
                 }
             }
-
-            for (int j = 0; j < 2; j++) Render::drawLine(pts[j].x, pts[j].y, pts[j + 1].x, pts[j + 1].y);
-            Render::drawLine(pts[2].x, pts[2].y, pts[0].x, pts[0].y);
         }
     }
 }

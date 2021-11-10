@@ -35,7 +35,23 @@ void Event::update()
             if (Global::printKeys) Console::print("Key: " + std::to_string(event.key.keysym.sym));
             break;
         case SDL_MOUSEMOTION:
-            SDL_GetMouseState(&Input::mouseX, &Input::mouseY);
+            int x, y;
+            SDL_GetMouseState(&x, &y);
+
+            if (Input::mouseInit)
+            {
+                Input::mouseVelX = x - Input::mouseX;
+                Input::mouseVelY = y - Input::mouseY;
+                Input::mouseX = x;
+                Input::mouseY = y;
+            }
+            else
+            {
+                Input::mouseX = x;
+                Input::mouseY = y;
+                Input::mouseInit = true;
+            }
+
             break;
         case SDL_MOUSEBUTTONDOWN:
         {
