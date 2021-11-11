@@ -2,7 +2,6 @@
 
 namespace Input
 {
-    extern bool mouseInit;
     extern bool mouseLeft;
     extern bool mouseMiddle;
     extern bool mouseRight;
@@ -10,4 +9,7 @@ namespace Input
     extern int mouseY;
     extern int mouseVelX;
     extern int mouseVelY;
+    
+    extern void initMouse();
+    extern void update();
 }

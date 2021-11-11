@@ -11,6 +11,7 @@
 #include "console.h"
 #include "render.h"
 #include "titlebar.h"
+#include <input.h>
 
 long prevTime = 0;
 
@@ -79,6 +80,7 @@ int fpsTimer = 500;
 float fpsRead = 0;
 void Engine::update()
 {
+    Input::update();
     Script::update();
     Titlebar::update();
     Console::update();
