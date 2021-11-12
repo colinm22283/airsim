@@ -14,6 +14,7 @@
 
 #include <3D/engine3DGlobal.h>
 #include <3D/object.h>
+#include <3D/primatives.h>
 
 void Script::exit()
 {
@@ -24,16 +25,13 @@ void Script::exit()
 
 void Script::keyDown(SDL_Keysym keysym) { }
 
-Mesh m;
-Object o;
-
 void Script::start()
 {
-    m = Mesh::createBlock(10, 10, 10);
-    o.pos = { 20, 0, 20 };
-    o.mesh = &m;
-    Engine3DGlobal::objects.push_back(o);
-    Object o2({ 30, 10, 30 }, { 0, 0, 0 }, &m);
+    Mesh block = Primatives::createBlock(10, 10, 10);
+    Mesh pyr = Primatives::createPyramid(10, 10, 10);
+    Object o1({ 20, 0, 20 }, { 0, 0, 0 }, &block);
+    Engine3DGlobal::objects.push_back(o1);
+    Object o2({ 30, 10, 30 }, { 0, 0, 0 }, &pyr);
     Engine3DGlobal::objects.push_back(o2);
 
     Engine3DGlobal::camera.pos.y = 3;
