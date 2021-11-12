@@ -17,6 +17,31 @@ inline Mesh Primatives::createPyramid(float width, float height, float length)
     proto.verts.push_back((vertex){ (point3){ width, 0, length }, (point2){ 0, 0 } }); //              3
     proto.verts.push_back((vertex){ (point3){ width / 2, height, length / 2 }, (point2){ 2, 1 } }); // 4
 
+    proto.faces.push_back((face){
+        { &proto.verts[0], &proto.verts[1], &proto.verts[2] },
+        (point3){ 0, -1, 0 }
+    });
+    proto.faces.push_back((face){
+        { &proto.verts[1], &proto.verts[2], &proto.verts[3] },
+        (point3){ 0, -1, 0 }
+    });
+    proto.faces.push_back((face){
+        { &proto.verts[0], &proto.verts[1], &proto.verts[4] },
+        (point3){ 1, 0, 0 }
+    });
+    proto.faces.push_back((face){
+        { &proto.verts[1], &proto.verts[3], &proto.verts[4] },
+        (point3){ 1, 0, 0 }
+    });
+    proto.faces.push_back((face){
+        { &proto.verts[3], &proto.verts[2], &proto.verts[4] },
+        (point3){ 1, 0, 0 }
+    });
+    proto.faces.push_back((face){
+        { &proto.verts[2], &proto.verts[0], &proto.verts[4] },
+        (point3){ 1, 0, 0 }
+    });
+
     return proto;
 }
 inline Mesh Primatives::createBlock(float width, float height, float length)

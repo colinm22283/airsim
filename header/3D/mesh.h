@@ -25,6 +25,4 @@ public:
     std::vector<face> faces;
 
     void draw(point3 pos);
-
-    static Mesh createBlock(float width, float height, float length);
 };

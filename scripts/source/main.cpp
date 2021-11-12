@@ -25,10 +25,12 @@ void Script::exit()
 
 void Script::keyDown(SDL_Keysym keysym) { }
 
+Mesh block;
+Mesh pyr;
 void Script::start()
 {
-    Mesh block = Primatives::createBlock(10, 10, 10);
-    Mesh pyr = Primatives::createPyramid(10, 10, 10);
+    block = Primatives::createBlock(10, 10, 10);
+    pyr = Primatives::createPyramid(10, -10, 10);
     Object o1({ 20, 0, 20 }, { 0, 0, 0 }, &block);
     Engine3DGlobal::objects.push_back(o1);
     Object o2({ 30, 10, 30 }, { 0, 0, 0 }, &pyr);
