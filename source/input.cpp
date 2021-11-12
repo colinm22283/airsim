@@ -8,6 +8,8 @@ int Input::mouseY = 0;
 int Input::mouseVelX = 0;
 int Input::mouseVelY = 0;
 
+bool Input::keys[256];
+
 bool mouseInit = false;
 int prevMouseX = 0;
 int prevMouseY = 0;
@@ -32,4 +34,9 @@ void Input::update()
         prevMouseX = Input::mouseX;
         prevMouseY = Input::mouseY;
     }
+}
+
+bool Input::getKey(int keyCode)
+{
+    return keys[keyCode];
 }

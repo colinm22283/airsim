@@ -33,14 +33,37 @@ void Script::start()
     o.pos = { 20, 0, 20 };
     o.mesh = &m;
     Engine3DGlobal::objects.push_back(o);
+    Object o2({ 30, 10, 30 }, { 0, 0, 0 }, &m);
+    Engine3DGlobal::objects.push_back(o2);
 
     Engine3DGlobal::camera.pos.y = 3;
 }
 void Script::update()
 {
     Render::clearScreen({ 0, 0, 0 });
-    Engine3DGlobal::objects[0].draw();
-    Engine3DGlobal::camera.dir.y += Input::mouseVelX / 50.0f;
+    
+    Engine3DGlobal::camera.dir.y += Input::mouseVelX / 150.0f;
+    Engine3DGlobal::camera.dir.x += Input::mouseVelY / 150.0f;
+    if(Input::getKey(119))
+    {
+        Engine3DGlobal::camera.pos.x += cosf32(Engine3DGlobal::camera.dir.y) * 0.1f;
+        Engine3DGlobal::camera.pos.z += sinf32(Engine3DGlobal::camera.dir.y) * 0.1f;
+    }
+    if(Input::getKey(115))
+    {
+        Engine3DGlobal::camera.pos.x -= cosf32(Engine3DGlobal::camera.dir.y) * 0.1f;
+        Engine3DGlobal::camera.pos.z -= sinf32(Engine3DGlobal::camera.dir.y) * 0.1f;
+    }
+    // if(Input::getKey(97))
+    // {
+    //     Engine3DGlobal::camera.pos.x += cosf32(Engine3DGlobal::camera.dir.y) * 0.1f;
+    //     Engine3DGlobal::camera.pos.z += sinf32(Engine3DGlobal::camera.dir.y) * 0.1f;
+    // }
+    // if(Input::getKey(100))
+    // {
+    //     Engine3DGlobal::camera.pos.x -= cosf32(Engine3DGlobal::camera.dir.y) * 0.1f;
+    //     Engine3DGlobal::camera.pos.z -= sinf32(Engine3DGlobal::camera.dir.y) * 0.1f;
+    // }
 }
 
 void Script::mouseDown(int button)

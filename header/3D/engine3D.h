@@ -15,5 +15,5 @@ namespace Engine3D
     };
     extern camera cam;
 
-    extern std::vector<Object> objects;
+    extern void update();
 }

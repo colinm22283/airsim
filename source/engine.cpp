@@ -12,6 +12,7 @@
 #include "render.h"
 #include "titlebar.h"
 #include <input.h>
+#include <3D/engine3D.h>
 
 long prevTime = 0;
 
@@ -82,6 +83,7 @@ void Engine::update()
 {
     Input::update();
     Script::update();
+    Engine3D::update();
     Titlebar::update();
     Console::update();
 

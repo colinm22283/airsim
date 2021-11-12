@@ -9,7 +9,10 @@ namespace Input
     extern int mouseY;
     extern int mouseVelX;
     extern int mouseVelY;
+    extern bool keys[256];
     
     extern void initMouse();
     extern void update();
+
+    extern bool getKey(int keyCode);
 }
