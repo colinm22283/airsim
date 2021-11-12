@@ -19,6 +19,7 @@ class Mesh
 {
 public:
     Mesh();
+    Mesh(vertex _verts[], int vCount, face _faces[], int fCount);
 
     std::vector<vertex> verts;
     std::vector<face> faces;

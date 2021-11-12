@@ -10,9 +10,13 @@
 #include <3D/engine3DGlobal.h>
 
 //                                               MESH CLASS
-Mesh::Mesh()
+Mesh::Mesh() { }
+Mesh::Mesh(vertex _verts[], int vCount, face _faces[], int fCount)
 {
-
+    for (int i = 0; i < vCount; i++)
+    { verts.push_back(_verts[i]); }
+    for (int i = 0; i < fCount; i++)
+    { faces.push_back(_faces[i]); }
 }
 
 void Mesh::draw(point3 pos)
