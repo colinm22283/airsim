@@ -2,5 +2,5 @@
 
 namespace MeshLoader
 {
-    void loadMeshes();
+    extern void loadMeshes();
 }

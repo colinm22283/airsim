@@ -15,5 +15,6 @@ namespace Engine3D
     };
     extern camera cam;
 
+    extern void init();
     extern void update();
 }

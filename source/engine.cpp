@@ -61,6 +61,7 @@ void Engine::start()
         return;
     }
 
+    Engine3D::init();
     Script::start();
 
     std::thread eventThread(Event::init);

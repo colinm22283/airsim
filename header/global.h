@@ -2,6 +2,8 @@
 
 #include "SDL/SDL.h"
 
+#define DEBUG_MODE 0
+
 #define PI 3.14159265
 
 namespace Global

@@ -6,3 +6,5 @@
 #include <3D/mesh.h>
 
 extern std::map<std::string, Mesh> Meshes;
+
+inline std::map<std::string, Mesh> Meshes;
