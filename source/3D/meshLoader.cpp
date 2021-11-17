@@ -16,33 +16,6 @@ void rf(std::ifstream* s, float* x);
 
 void MeshLoader::loadMeshes()
 {
-    // temp create mesh
-    std::ofstream temp("./meshes/cube.mesh", std::ios::binary);
-    wi(&temp, 8);
-    wf(&temp, 0.0f); wf(&temp, 0.0f); wf(&temp, 0.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f);
-    wf(&temp, 0.0f); wf(&temp, 0.0f); wf(&temp, 1.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f);
-    wf(&temp, 0.0f); wf(&temp, 1.0f); wf(&temp, 0.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f);
-    wf(&temp, 0.0f); wf(&temp, 1.0f); wf(&temp, 1.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f);
-    wf(&temp, 1.0f); wf(&temp, 0.0f); wf(&temp, 0.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f);
-    wf(&temp, 1.0f); wf(&temp, 0.0f); wf(&temp, 1.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f);
-    wf(&temp, 1.0f); wf(&temp, 1.0f); wf(&temp, 0.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f);
-    wf(&temp, 1.0f); wf(&temp, 1.0f); wf(&temp, 1.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f);
-    wi(&temp, 12); // write face amount
-    wi(&temp, 0.0f); wi(&temp, 2.0f); wi(&temp, 4.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f); wf(&temp, -1.0f);   // front
-    wi(&temp, 2.0f); wi(&temp, 4.0f); wi(&temp, 6.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f); wf(&temp, -1.0f);   //
-    wi(&temp, 1.0f); wi(&temp, 3.0f); wi(&temp, 5.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f); wf(&temp, 1.0f);    // back
-    wi(&temp, 3.0f); wi(&temp, 5.0f); wi(&temp, 7.0f);   wf(&temp, 0.0f); wf(&temp, 0.0f); wf(&temp, 1.0f);    //
-    wi(&temp, 0.0f); wi(&temp, 1.0f); wi(&temp, 2.0f);   wf(&temp, -1.0f); wf(&temp, 0.0f); wf(&temp, 0.0f);   // left
-    wi(&temp, 1.0f); wi(&temp, 2.0f); wi(&temp, 3.0f);   wf(&temp, -1.0f); wf(&temp, 0.0f); wf(&temp, 0.0f);   //
-    wi(&temp, 4.0f); wi(&temp, 5.0f); wi(&temp, 6.0f);   wf(&temp, 1.0f); wf(&temp, 0.0f); wf(&temp, 0.0f);    // right
-    wi(&temp, 5.0f); wi(&temp, 6.0f); wi(&temp, 7.0f);   wf(&temp, 1.0f); wf(&temp, 0.0f); wf(&temp, 0.0f);    //
-    wi(&temp, 0.0f); wi(&temp, 1.0f); wi(&temp, 4.0f);   wf(&temp, 0.0f); wf(&temp, -1.0f); wf(&temp, 0.0f);   // bottom
-    wi(&temp, 1.0f); wi(&temp, 4.0f); wi(&temp, 5.0f);   wf(&temp, 0.0f); wf(&temp, -1.0f); wf(&temp, 0.0f);   // 
-    wi(&temp, 2.0f); wi(&temp, 3.0f); wi(&temp, 6.0f);   wf(&temp, 0.0f); wf(&temp, 1.0f); wf(&temp, 0.0f);    // top
-    wi(&temp, 3.0f); wi(&temp, 6.0f); wi(&temp, 7.0f);   wf(&temp, 0.0f); wf(&temp, 1.0f); wf(&temp, 0.0f);    //
-
-    temp.close();
-
     // read menifest file
     std::ifstream manifest;
     manifest.open("./meshes/manifest");
