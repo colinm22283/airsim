@@ -16,7 +16,6 @@ void rf(std::ifstream* s, float* x);
 
 void MeshLoader::loadMeshes()
 {
-    // read menifest file
     std::ifstream manifest;
     manifest.open("./meshes/manifest");
 
