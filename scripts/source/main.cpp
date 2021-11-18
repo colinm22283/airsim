@@ -26,15 +26,15 @@ void Script::exit()
 
 void Script::keyDown(SDL_Keysym keysym) { }
 
-Mesh block;
+//Mesh block;
 Mesh pyr;
 void Script::start()
 {
-    block = Primatives::createBlock(10, 10, 10);
-    pyr = Primatives::createPyramid(10, -10, 10);
-    Object o1({ 20, 0, 20 }, { 0, 0, 0 }, &Meshes["cube"]);
+    //block = Primatives::createBlock(1, 1, 1);
+    pyr = Primatives::createPyramid(1, -1, 1);
+    Object o1({ 10, 0, 10 }, { 0, 0, 0 }, { 10, 10, 10 }, &Meshes["cube"]);
     Engine3DGlobal::objects.push_back(o1);
-    Object o2({ 30, 10, 30 }, { 0, 0, 0 }, &pyr);
+    Object o2({ 10, 0, 10 }, { 0, 0, 0 }, { 10, 10, 10 }, &pyr);
     Engine3DGlobal::objects.push_back(o2);
 
     Engine3DGlobal::camera.pos.y = 3;

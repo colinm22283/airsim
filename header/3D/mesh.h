@@ -24,5 +24,5 @@ public:
     std::vector<vertex> verts;
     std::vector<face> faces;
 
-    void draw(point3 pos);
+    void draw(point3 pos, point3 scale);
 };
