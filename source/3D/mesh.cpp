@@ -30,8 +30,8 @@ void Mesh::draw(point3 pos, point3 scale)
             for (int k = 0; k < 3; k++)
             {
                 float xAngle = atan2f32(
-                    (faces[i].points[k]->pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z,
-                    (faces[i].points[k]->pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x
+                    (verts[faces[i].points[k]].pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z,
+                    (verts[faces[i].points[k]].pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x
                 );
                 if (
                     xAngle > Engine3DGlobal::camera.dir.y - (Engine3DGlobal::camera.fov / 2) &&
@@ -42,14 +42,14 @@ void Mesh::draw(point3 pos, point3 scale)
                     {
                         // check if point is in fov
                         float xAngle = atan2f32(
-                            (faces[i].points[j]->pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z,
-                            (faces[i].points[j]->pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x
+                            (verts[faces[i].points[j]].pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z,
+                            (verts[faces[i].points[j]].pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x
                         );
                         float yAngle = atan2f32(
-                            faces[i].points[j]->pos.y * scale.y + pos.y - Engine3DGlobal::camera.pos.y,
+                            verts[faces[i].points[j]].pos.y * scale.y + pos.y - Engine3DGlobal::camera.pos.y,
                             sqrtf32(
-                                powf32((faces[i].points[j]->pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x, 2) +
-                                powf32((faces[i].points[j]->pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z, 2)
+                                powf32((verts[faces[i].points[j]].pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x, 2) +
+                                powf32((verts[faces[i].points[j]].pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z, 2)
                             )
                         );
 

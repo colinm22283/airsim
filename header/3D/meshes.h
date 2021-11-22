@@ -5,6 +5,11 @@
 
 #include <3D/mesh.h>
 
-extern std::map<std::string, Mesh> Meshes;
+namespace Meshes
+{
+    extern int count;
+    extern char** names;
+    extern Mesh** meshes;
 
-inline std::map<std::string, Mesh> Meshes;
+    extern Mesh* get(std::string name);
+}

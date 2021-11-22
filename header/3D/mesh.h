@@ -11,7 +11,7 @@ struct vertex
 };
 struct face
 {
-    vertex* points[3];
+    int points[3];
     point3 dir;
 };
 

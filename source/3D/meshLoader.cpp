@@ -1,6 +1,8 @@
 #include <fstream>
 #include <string.h>
 #include <regex>
+#include <vector>
+#include <iostream>
 
 #include <global.h>
 #include <console.h>
@@ -14,16 +16,22 @@ void wf(std::ofstream* s, float x);
 void ri(std::ifstream* s, int* x);
 void rf(std::ifstream* s, float* x);
 
+std::vector<Mesh> meshes;
+
 void MeshLoader::loadMeshes()
 {
     std::ifstream manifest;
     manifest.open("./meshes/manifest");
 
-    int line = 1;
+    std::vector<std::string> names;
+
+    int line = 0;
     std::regex rgx("\\/([^\\/\\.]*)\\.mesh");
     std::string buf;
     do
     {
+        line++;
+
         manifest >> buf;
 
         std::smatch matches;
@@ -71,19 +79,29 @@ void MeshLoader::loadMeshes()
                 Console::print("        Look Dir " + std::to_string(dir.x) + " " + std::to_string(dir.y) + " " + std::to_string(dir.z));
 #endif
                 proto.faces.push_back((face){ {
-                    &proto.verts[pointer[0]],
-                    &proto.verts[pointer[1]],
-                    &proto.verts[pointer[2]]
+                    pointer[0],
+                    pointer[1],
+                    pointer[2]
                 }, dir });
             }
 
-            Meshes[name] = proto;
+            names.push_back(name);
+            meshes.push_back(proto);
             meshFile.close();
         }
-        else Console::print("Error reading line " + std::to_string(line) + "of meshes manifest.");
-        line++;
+        else Console::print("Error reading line " + std::to_string(line + 1) + "of meshes manifest.");
+        
     }
     while (!manifest.eof());
+
+    Meshes::meshes = (Mesh**)malloc(sizeof(Mesh*) * line);
+    Meshes::names = (char**)malloc(sizeof(char*) * line);
+    Meshes::count = line;
+    for (int i = 0; i < (int)meshes.size(); i++)
+    {
+        Meshes::names[i] = (char*)names[i].c_str();
+        Meshes::meshes[i] = &(meshes[i]);
+    }
 
     Console::print("Done loading meshes.");
 
