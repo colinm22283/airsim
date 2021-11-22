@@ -10,6 +10,16 @@ int Input::mouseVelY = 0;
 
 bool Input::keys[KEY_MAX];
 
+bool Input::modifiers::shift = false;
+bool Input::modifiers::ctrl = false;
+bool Input::modifiers::alt = false;
+bool Input::modifiers::lshift = false;
+bool Input::modifiers::lctrl = false;
+bool Input::modifiers::lalt = false;
+bool Input::modifiers::rshift = false;
+bool Input::modifiers::rctrl = false;
+bool Input::modifiers::ralt = false;
+
 bool mouseInit = false;
 int prevMouseX = 0;
 int prevMouseY = 0;

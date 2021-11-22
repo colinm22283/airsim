@@ -34,21 +34,28 @@ void Script::start()
 
     Engine3DGlobal::camera.pos.y = 3;
 }
+
+float moveMult = 0.01;
+
 void Script::update()
 {
     Render::clearScreen({ 0, 0, 0 });
     
     Engine3DGlobal::camera.dir.y += Input::mouseVelX / 150.0f;
     Engine3DGlobal::camera.dir.x += Input::mouseVelY / 150.0f;
+
+    if (Input::modifiers::lshift) moveMult = 0.05f;
+    else moveMult = 0.01f;
+
     if(Input::getKey(119))
     {
-        Engine3DGlobal::camera.pos.x += cosf32(Engine3DGlobal::camera.dir.y) * 0.1f;
-        Engine3DGlobal::camera.pos.z += sinf32(Engine3DGlobal::camera.dir.y) * 0.1f;
+        Engine3DGlobal::camera.pos.x += cosf32(Engine3DGlobal::camera.dir.y) * moveMult;
+        Engine3DGlobal::camera.pos.z += sinf32(Engine3DGlobal::camera.dir.y) * moveMult;
     }
     if(Input::getKey(115))
     {
-        Engine3DGlobal::camera.pos.x -= cosf32(Engine3DGlobal::camera.dir.y) * 0.1f;
-        Engine3DGlobal::camera.pos.z -= sinf32(Engine3DGlobal::camera.dir.y) * 0.1f;
+        Engine3DGlobal::camera.pos.x -= cosf32(Engine3DGlobal::camera.dir.y) * moveMult;
+        Engine3DGlobal::camera.pos.z -= sinf32(Engine3DGlobal::camera.dir.y) * moveMult;
     }
     // if(Input::getKey(97))
     // {

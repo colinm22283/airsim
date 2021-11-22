@@ -85,6 +85,10 @@ void MeshLoader::loadMeshes()
                 }, dir });
             }
 
+#if DEBUG_MODE
+            Console::print("\"" + name + "\" loaded");
+#endif
+
             names.push_back(name);
             meshes.push_back(proto);
             meshFile.close();

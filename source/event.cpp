@@ -32,6 +32,38 @@ void Event::update()
         {
             int ck = event.key.keysym.sym;
             if (ck < KEY_MAX) Input::keys[ck] = true;
+
+            switch (event.key.keysym.mod)
+            {
+            case KMOD_SHIFT:
+                Input::modifiers::shift = true;
+                break;
+            case KMOD_CTRL:
+                Input::modifiers::ctrl = true;
+                break;
+            case KMOD_ALT:
+                Input::modifiers::alt = true;
+                break;
+            case KMOD_LSHIFT:
+                Input::modifiers::lshift = true;
+                break;
+            case KMOD_LCTRL:
+                Input::modifiers::lctrl = true;
+                break;
+            case KMOD_LALT:
+                Input::modifiers::lalt = true;
+                break;
+            case KMOD_RSHIFT:
+                Input::modifiers::rshift = true;
+                break;
+            case KMOD_RCTRL:
+                Input::modifiers::rctrl = true;
+                break;
+            case KMOD_RALT:
+                Input::modifiers::ralt = true;
+                break;
+            }
+
             ConsoleParser::keyDown(event.key.keysym);
             Console::keyDown(event.key.keysym);
             Script::keyDown(event.key.keysym);
@@ -41,6 +73,37 @@ void Event::update()
         {
             int ck = event.key.keysym.sym;
             if (ck < KEY_MAX) Input::keys[ck] = false;
+
+            switch (event.key.keysym.mod)
+            {
+            case KMOD_SHIFT:
+                Input::modifiers::shift = false;
+                break;
+            case KMOD_CTRL:
+                Input::modifiers::ctrl = false;
+                break;
+            case KMOD_ALT:
+                Input::modifiers::alt = false;
+                break;
+            case KMOD_LSHIFT:
+                Input::modifiers::lshift = false;
+                break;
+            case KMOD_LCTRL:
+                Input::modifiers::lctrl = false;
+                break;
+            case KMOD_LALT:
+                Input::modifiers::lalt = false;
+                break;
+            case KMOD_RSHIFT:
+                Input::modifiers::rshift = false;
+                break;
+            case KMOD_RCTRL:
+                Input::modifiers::rctrl = false;
+                break;
+            case KMOD_RALT:
+                Input::modifiers::ralt = false;
+                break;
+            }
         } break;
         case SDL_MOUSEMOTION:
             SDL_GetMouseState(&Input::mouseX, &Input::mouseY);
