@@ -1,5 +1,7 @@
 #pragma once
 
+#define KEY_MAX 256
+
 namespace Input
 {
     extern bool mouseLeft;

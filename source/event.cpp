@@ -29,15 +29,19 @@ void Event::update()
             Script::exit();
             break;
         case SDL_KEYDOWN:
-            Input::keys[(int)event.key.keysym.sym] = true;
+        {
+            int ck = event.key.keysym.sym;
+            if (ck < KEY_MAX) Input::keys[ck] = true;
             ConsoleParser::keyDown(event.key.keysym);
             Console::keyDown(event.key.keysym);
             Script::keyDown(event.key.keysym);
             if (Global::printKeys) Console::print("Key: " + std::to_string(event.key.keysym.sym));
-            break;
+        } break;
         case SDL_KEYUP:
-            Input::keys[(int)event.key.keysym.sym] = false;
-            break;
+        {
+            int ck = event.key.keysym.sym;
+            if (ck < KEY_MAX) Input::keys[ck] = false;
+        } break;
         case SDL_MOUSEMOTION:
             SDL_GetMouseState(&Input::mouseX, &Input::mouseY);
             Input::initMouse();

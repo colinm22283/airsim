@@ -8,7 +8,7 @@ int Input::mouseY = 0;
 int Input::mouseVelX = 0;
 int Input::mouseVelY = 0;
 
-bool Input::keys[256];
+bool Input::keys[KEY_MAX];
 
 bool mouseInit = false;
 int prevMouseX = 0;
@@ -38,5 +38,5 @@ void Input::update()
 
 bool Input::getKey(int keyCode)
 {
-    return keys[keyCode];
+    return keys[keyCode] && keyCode < KEY_MAX;
 }
