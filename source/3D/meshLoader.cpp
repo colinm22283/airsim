@@ -2,7 +2,6 @@
 #include <string.h>
 #include <regex>
 #include <vector>
-#include <iostream>
 
 #include <global.h>
 #include <console.h>
@@ -47,7 +46,9 @@ void MeshLoader::loadMeshes()
 
             int vertexAmount;
             ri(&meshFile, &vertexAmount);
+#if DEBUG_MODE
             Console::print("    Verts: " + std::to_string(vertexAmount));
+#endif
 
             for (int i = 0; i < vertexAmount; i++)
             {
@@ -65,7 +66,9 @@ void MeshLoader::loadMeshes()
 
             int faceAmount;
             ri(&meshFile, &faceAmount);
+#if DEBUG_MODE
             Console::print("    Faces: " + std::to_string(faceAmount));
+#endif
 
             for (int i = 0; i < faceAmount; i++)
             {

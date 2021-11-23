@@ -1,5 +1,7 @@
 #pragma once
 
+#include <math.h>
+
 struct point2
 {
     float x;
@@ -18,3 +20,5 @@ struct direction
     float y;
     float z;
 };
+
+float fixAng(float x);
