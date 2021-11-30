@@ -1,25 +1,18 @@
-#include <math.h>
-
-#include <color.h>
 #include <render.h>
-#include <console.h>
 
+#include <3D/render3D.h>
+#include <3D/texture.h>
 #include <3D/mesh.h>
-#include <3D/math.h>
-#include <3D/engine3DFlags.h>
 #include <3D/engine3DGlobal.h>
+#include <3D/engine3DFlags.h>
 
-//                                               MESH CLASS
-Mesh::Mesh() { }
-Mesh::Mesh(vertex _verts[], int vCount, face _faces[], int fCount)
+void Render3D::drawTexture(texture* tex, point2 pos)
 {
-    for (int i = 0; i < vCount; i++)
-    { verts.push_back(_verts[i]); }
-    for (int i = 0; i < fCount; i++)
-    { faces.push_back(_faces[i]); }
+    for (int x = 0; x < tex->width; x++) for (int y = 0; y < tex->height; y++)
+    { Render::drawPixel(x + pos.x, y + pos.y, tex->pixels[x][y]); }
 }
 
-void Mesh::draw(point3 pos, point3 scale)
+void Render3D::drawWireframe(mesh* m, point3 pos, point3 scale)
 {
     float camDirY = fixAng(Engine3DGlobal::camera.dir.y);
     float camDirX = Engine3DGlobal::camera.dir.x;
@@ -28,13 +21,13 @@ void Mesh::draw(point3 pos, point3 scale)
     {
         Render::setColor({ 0, 255, 0 });
 
-        for (int i = 0; i < (int)faces.size(); i++) // draw points
+        for (int i = 0; i < (int)m->faces.size(); i++) // draw points
         {
             for (int k = 0; k < 3; k++)
             {
                 float xAngle = atan2f32(
-                    (verts[faces[i].points[k]].pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z,
-                    (verts[faces[i].points[k]].pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x
+                    (m->verts[m->faces[i].points[k]].pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z,
+                    (m->verts[m->faces[i].points[k]].pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x
                 );
                 if (
                     xAngle > camDirY - (Engine3DGlobal::camera.fov / 2) &&
@@ -45,14 +38,14 @@ void Mesh::draw(point3 pos, point3 scale)
                     {
                         // check if point is in fov
                         float xAngle = atan2f32(
-                            (verts[faces[i].points[j]].pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z,
-                            (verts[faces[i].points[j]].pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x
+                            (m->verts[m->faces[i].points[j]].pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z,
+                            (m->verts[m->faces[i].points[j]].pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x
                         );
                         float yAngle = atan2f32(
-                            verts[faces[i].points[j]].pos.y * scale.y + pos.y - Engine3DGlobal::camera.pos.y,
+                            m->verts[m->faces[i].points[j]].pos.y * scale.y + pos.y - Engine3DGlobal::camera.pos.y,
                             sqrtf32(
-                                powf32((verts[faces[i].points[j]].pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x, 2) +
-                                powf32((verts[faces[i].points[j]].pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z, 2)
+                                powf32((m->verts[m->faces[i].points[j]].pos.x * scale.x) + pos.x - Engine3DGlobal::camera.pos.x, 2) +
+                                powf32((m->verts[m->faces[i].points[j]].pos.z * scale.z) + pos.z - Engine3DGlobal::camera.pos.z, 2)
                             )
                         );
 

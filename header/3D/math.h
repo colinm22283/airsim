@@ -22,3 +22,4 @@ struct direction
 };
 
 float fixAng(float x);
+float disAng(float a, float b);

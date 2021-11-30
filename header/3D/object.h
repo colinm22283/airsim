@@ -1,12 +1,12 @@
 #pragma once
 
-#include "mesh.h"
+#include <3D/mesh.h>
+#include <3D/texture.h>
 
-class Object
+struct Object
 {
-public:
     Object();
-    Object(point3 _pos, direction _dir, point3 scale, Mesh* _mesh);
+    Object(point3 _pos, direction _dir, point3 scale, mesh* _mesh, texture* _tex);
 
     point3 pos;
     direction dir;
@@ -14,5 +14,6 @@ public:
 
     void draw();
 
-    Mesh* mesh;
+    mesh* m;
+    texture* tex;
 };

@@ -1,7 +1,4 @@
 #include <math.h>
-#include <iostream>
-#include "SDL/SDL.h"
-#include "SDL/SDL_ttf.h"
 
 #include "global.h"
 #include "script.h"
@@ -15,6 +12,9 @@
 #include <3D/engine3DGlobal.h>
 #include <3D/object.h>
 #include <3D/meshes.h>
+#include <3D/textures.h>
+#include <3D/math.h>
+#include <3D/texture.h>
 
 void Script::exit()
 {
@@ -25,12 +25,18 @@ void Script::exit()
 
 void Script::keyDown(SDL_Keysym keysym) { }
 
-// Mesh block;
-// Mesh pyr;
+Object o1;
+
 void Script::start()
 {
-    Object o1({ 20, 0, 20 }, { 0, 0, 0 }, { 5, 5, 5 }, Meshes::get("cube"));
+    o1 = Object(
+        { 20, 0, 20 }, { 0, 0, 0 }, { 5, 5, 5 },
+        Meshes::get("cube"),
+        Textures::get("missing")
+    );
     Engine3DGlobal::objects.push_back(o1);
+    // Object o2({ 20, -5, 20 }, { 0, 0, 0 }, { 20, 20, 20 }, Meshes::get("prism"));
+    // Engine3DGlobal::objects.push_back(o2);
 
     Engine3DGlobal::camera.pos.y = 3;
 }

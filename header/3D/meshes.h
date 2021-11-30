@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <map>
 
 #include <3D/mesh.h>
 
@@ -9,7 +8,7 @@ namespace Meshes
 {
     extern int count;
     extern char** names;
-    extern Mesh** meshes;
+    extern mesh** meshes;
 
-    extern Mesh* get(std::string name);
+    extern mesh* get(std::string name);
 }

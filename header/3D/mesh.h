@@ -15,14 +15,8 @@ struct face
     point3 dir;
 };
 
-class Mesh
+struct mesh
 {
-public:
-    Mesh();
-    Mesh(vertex _verts[], int vCount, face _faces[], int fCount);
-
     std::vector<vertex> verts;
     std::vector<face> faces;
-
-    void draw(point3 pos, point3 scale);
 };

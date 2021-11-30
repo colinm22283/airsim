@@ -2,7 +2,7 @@
 
 #include "SDL/SDL.h"
 
-#define DEBUG_MODE 0
+#define DEV_MODE 1
 
 #define PI 3.14159265
 
